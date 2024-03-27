@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>progress</title>
+</head>
+<body>
+<p>downloading progress</p>
+<p>2024</p>
+<label for="file">downloading progress</label>
+<progress id="file" max="100" value="0"></progress>
+<button id="load">click me</button>
+<script>
+    let progress = 0;
+
+    function move() {
+        let progressbar = document.getElementById("file");
+        progressbar.value = 50;
+
+        if (progress === 0) {
+            progress = 1;
+            const elem = document.getElementById("file");
+            let width = 1;
+            const id = setInterval(frame, 300);
+
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    progress = 0;
+                } else {
+                    width++;
+                    elem.value = width;
+                    elem.innerHTML = width + "%";
+                }
+            }
+        }
+    }
+
+    document.getElementById("load").addEventListener("click", move);
+</script>
+</body>
+</html>
